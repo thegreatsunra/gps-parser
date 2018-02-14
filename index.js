@@ -19,6 +19,21 @@ port.on('data', (line) => {
     const parsed = nmea.parse(line)
     console.log(parsed)
     console.log('')
+    const results = {
+      lat: formatLatLng(parsed.lat, parsed.latPole),
+      lng: formatLatLng(parsed.lon, parsed.lonPole)
+    }
+    console.log(results)
+    console.log('')
+    console.log('')
   }
 })
 
+// format lat/long values with negative sign, decimals
+const formatLatLng = (value, pole) => {
+  value = (parseFloat(value) / 100).toFixed(7)
+  if (pole === 'W' || pole === 'S') {
+    value = -1 * value
+  }
+  return value
+}
