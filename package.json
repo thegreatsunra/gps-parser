@@ -1,0 +1,33 @@
+{
+  "name": "gps-parser",
+  "description": "GPS parser in Node",
+  "version": "0.0.0",
+  "homepage": "https://github.com/thegreatsunra/gps-parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thegreatsunra/gps-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thegreatsunra/gps-parser/issues"
+  },
+  "author": "Dane Petersen <thegreatsunra@gmail.com>",
+  "contributors": [
+    {
+      "name": "Dane Petersen",
+      "email": "thegreatsunra@gmail.com",
+      "url": "https://github.com/thegreatsunra"
+    }
+  ],
+  "engines": {
+    "node": ">= 8.1.0",
+    "npm": ">= 5.0.3"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
