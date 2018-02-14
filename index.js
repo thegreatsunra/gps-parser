@@ -10,3 +10,7 @@ const port = new SerialPort(device, {
 console.log(`listening for serial data at ${device}`)
 console.log('')
 
+port.on('data', (line) => {
+  line = line.toString()
+})
+
