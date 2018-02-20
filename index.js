@@ -21,6 +21,27 @@ const gpsDevice = setDevicePort()
 
 let port
 
+const connectToGPSDevice = () => {
+  port = new SerialPort(gpsDevice, {
+    baudRate: 9600
+  })
+  port.on('error', (err) => {
+    console.log(err)
+    console.log('GPS device not found.\nScanning again in 5 seconds...')
+    setTimeout(() => {
+      connectToGPSDevice()
+    }, 5000)
+  })
+  port.on('open', () => {
+    parseGPSData()
+  })
+  port.on('close', () => {
+    console.log('GPS device disconnected.\nAttempting to reconnect in 5 seconds...')
+    setTimeout(() => {
+      connectToGPSDevice()
+    }, 5000)
+  })
+}
 
 port.on('data', (line) => {
   line = line.toString()
