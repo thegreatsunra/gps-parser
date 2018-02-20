@@ -24,7 +24,7 @@
     "npm": ">= 5.0.3"
   },
   "dependencies": {
-    "nmea": "^0.1.0",
+    "gps": "^0.4.2",
     "serialport": "^6.0.5"
   },
   "devDependencies": {

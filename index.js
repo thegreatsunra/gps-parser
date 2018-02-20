@@ -1,5 +1,5 @@
+const GPS = require('gps')
 const SerialPort = require('serialport')
-const nmea = require('nmea')
 
 // this is the only GPS "sentence" we care about
 const sentence = '$GPGGA'
