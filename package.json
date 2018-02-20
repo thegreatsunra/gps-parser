@@ -24,6 +24,7 @@
     "npm": ">= 5.0.3"
   },
   "dependencies": {
+    "babel-eslint": "^8.2.2",
     "gps": "^0.4.2",
     "serialport": "^6.0.5"
   },
