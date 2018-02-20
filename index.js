@@ -43,28 +43,15 @@ const connectToGPSDevice = () => {
   })
 }
 
-port.on('data', (line) => {
-  line = line.toString()
-  // only parse the GPS sentence we care about... ignore the others
-  if (line.substring(0, sentence.length) === sentence) {
-    const parsed = nmea.parse(line)
+const parseGPSData = () => {
+  console.log(`listening for serial data at ${gpsDevice}`)
+  console.log('')
+  port.pipe(parser)
+  parser.on('data', (data) => {
+    gps.update(data)
+  })
+  gps.on('GGA', async (parsed) => {
     console.log(parsed)
     console.log('')
-    const results = {
-      lat: formatLatLng(parsed.lat, parsed.latPole),
-      lng: formatLatLng(parsed.lon, parsed.lonPole)
-    }
-    console.log(results)
-    console.log('')
-    console.log('')
-  }
-})
-
-// format lat/long values with negative sign, decimals
-const formatLatLng = (value, pole) => {
-  value = (parseFloat(value) / 100).toFixed(7)
-  if (pole === 'W' || pole === 'S') {
-    value = -1 * value
-  }
-  return value
+  })
 }
