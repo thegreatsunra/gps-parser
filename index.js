@@ -55,3 +55,5 @@ const parseGPSData = () => {
     console.log('')
   })
 }
+
+connectToGPSDevice()
