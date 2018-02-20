@@ -1,16 +1,26 @@
 const GPS = require('gps')
 const SerialPort = require('serialport')
 
-// this is the only GPS "sentence" we care about
-const sentence = '$GPGGA'
 const device = process.argv[2] || '/dev/tty.usbmodem14321'
 
-const port = new SerialPort(device, {
-  baudRate: 9600
+const setDevicePort = () => {
+  if (process.argv[2]) return process.argv[2]
+  // if using resin on a raspberry pi
+  else if (process.env.RESIN) return '/dev/ttyACM0'
+  else return '/dev/tty.usbmodem14311'
+}
+
+const gps = new GPS
+
+const parsers = SerialPort.parsers
+const parser = new parsers.Readline({
+  delimiter: '\r\n'
 })
 
-console.log(`listening for serial data at ${device}`)
-console.log('')
+const gpsDevice = setDevicePort()
+
+let port
+
 
 port.on('data', (line) => {
   line = line.toString()
